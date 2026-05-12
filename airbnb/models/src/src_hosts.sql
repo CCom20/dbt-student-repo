@@ -1,4 +1,4 @@
-WITH src_raw as (
+WITH src_hosts as (
     select * from airbnb.raw.raw_hosts
 )
 SELECT
@@ -7,4 +7,4 @@ SELECT
     , is_superhost
     , created_at
     , updated_at
-FROM src_raw
+FROM src_hosts
