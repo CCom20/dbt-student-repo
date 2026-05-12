@@ -1,0 +1,10 @@
+WITH src_raw as (
+    select * from airbnb.raw.raw_hosts
+)
+SELECT
+    id as host_id
+    , name as host_name
+    , is_superhost
+    , created_at
+    , updated_at
+FROM src_raw
