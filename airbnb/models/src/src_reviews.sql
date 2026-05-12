@@ -1,6 +1,6 @@
 
 WITH src_reviews AS (
-    SELECT * FROM AIRBNB.RAW.RAW_REVIEWS
+    SELECT * FROM {{source('airbnb', 'reviews')}}
 )
 SELECT listing_id
     , date as review_date
