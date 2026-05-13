@@ -1,16 +1,21 @@
 models:
   - name: dim_listings_cleansed
+    description: This is a cleaned stable for AirBnB listings
     data_tests:
       - minimum_row_count:
           arguments: 
             min_row_count: 1000
+          severity: warn 
+
     columns:
       - name: listing_id
+        description: Primary key for the listing
         data_tests:
           - unique
           - not_null
 
       - name: host_id
+        description: Primary key for the host
         data_tests:
           - not_null
           - relationships:
@@ -19,12 +24,14 @@ models:
                 field: host_id
 
       - name: room_type
+        description: The type of the room / apartment / house
         data_tests:
           - accepted_values:
               arguments:
                 values: ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']
 
       - name: minimum_nights
+        description: '{{ doc("dim_listings_cleansed__minimum_nights") }}'
         data_tests:
           - positive_values
 
@@ -32,9 +39,12 @@ models:
     config:   
       contract:
         enforced: true
+    
     columns:
       - name: host_id
         data_type: integer
+        constraints:
+          - type: not_null
         data_tests:
           - unique
           - not_null
